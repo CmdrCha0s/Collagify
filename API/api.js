@@ -4,6 +4,7 @@ var multiparty = require('multiparty')
 var fs = require('fs')
 var Jimp = require("jimp")
 var imageProcessing = require('./imageProcessing')
+var Filters = require('./imageProcessing')
 
 router.post('/upload', function(req, res, next){
   var form = new multiparty.Form({uploadDir: './uploads'})
@@ -26,7 +27,7 @@ router.post('/upload', function(req, res, next){
 router.post('/apply-filter/:image/:filter', function(req, res, next){
   var id = req.params.image
   var filter = req.params.filter
-  imageProcessing.applyFilter(id, filter, function(err, image){
+  Filters.applyFilter(id, filter, function(err, image){
     if(err) res.status(500).json(err)
     res.json(image)
   })
