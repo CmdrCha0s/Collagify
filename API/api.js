@@ -4,10 +4,10 @@ var multiparty = require('multiparty')
 var fs = require('fs')
 var Jimp = require("jimp")
 var imageProcessing = require('./imageProcessing')
-var Filters = require('./imageProcessing')
+var Filters = require('./filters')
 
 router.post('/upload', function(req, res, next){
-  var form = new multiparty.Form({uploadDir: './uploads'})
+  var form = new multiparty.Form({uploadDir: './Uploads'})
 
   form.parse(req, function(err, fields, files) {
     if(err) res.status(500).json({error:err})
@@ -24,6 +24,16 @@ router.post('/upload', function(req, res, next){
   })
 })
 
+router.post('/generate', function(req, res, next) {
+  var collage = req.body.collage
+
+  imageProcessing.generateCollage(collage, function(error, collageImage){
+    if(err)
+      res.status(500).json({error:err})
+    res.json(collageImage)    
+  })
+})
+
 router.post('/apply-filter/:image/:filter', function(req, res, next){
   var id = req.params.image
   var filter = req.params.filter
@@ -31,10 +41,6 @@ router.post('/apply-filter/:image/:filter', function(req, res, next){
     if(err) res.status(500).json(err)
     res.json(image)
   })
-})
-
-router.post('/generate', function(req, res, next) {
-  res.json({});
 })
 
 module.exports = router;

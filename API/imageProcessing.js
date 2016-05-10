@@ -12,4 +12,9 @@ var resizeImage = function(filename, id, cb){
   })
 }
 
+var generateCollage = function(collage, cb){
+  cb(undefined, {})
+}
+
 exports.resizeImage = resizeImage
+exports.generateCollage = generateCollage
