@@ -8,9 +8,8 @@ var API = require('./API/api')
 var sassOptions = {
     src: path.join(__dirname, 'UI/style'),
     dest: path.join(__dirname, 'Public/css'),
-    debug: true,
     outputStyle: 'compressed',
-    prefix:  '/css'  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
+    prefix:  '/css'
 }
 
 app.set('port', (process.env.PORT || 3333))
