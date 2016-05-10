@@ -1,0 +1,29 @@
+{
+  "name": "Collagify",
+  "version": "0.0.1",
+  "description": "A sample Node.js app using Express 4",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "collagify.js",
+  "scripts": {
+    "start": "node collagify.js"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "express": "~4.0.0",
+    "jade": "~1.3.0",
+    "jimp": "^0.2.24",
+    "multiparty": "^4.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heroku/node-js-getting-started"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
+}
