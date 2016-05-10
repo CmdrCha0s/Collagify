@@ -1,0 +1,101 @@
+@import 'mixins';
+
+$uploader-top: 60px;
+
+.upload-modal {
+  position: absolute;
+  top: $uploader-top;
+  height: calc(100% - #{$uploader-top});
+  width: 100%;
+  background: rgba(19, 28, 95, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index:1000;
+}
+
+.uploader {
+  background: #CAD8FF;
+  padding: 24px 10px;
+  border-radius: 6px;
+}
+
+
+.uploader-form {
+  background-color: #ACC3F7;
+  outline: 2px dashed black;
+  outline-offset: -10px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+
+.uploader-form {
+  .success,
+  .error,
+  .uploading,
+  .file-input {
+    display:none;
+    height: 100px;
+    padding: 10px;
+    line-height: 100px;
+  }
+
+  .dragover{
+    background-color: #83AFFF;
+    transition: background-color 0.5s ease;
+  }
+
+  .fa-upload{
+    font-size: 60px;
+    margin-top: 10px;
+    display: block;
+  }
+
+  label {
+    height: 100px;
+    padding: 10px;
+    display: block;
+    cursor: pointer;
+  }
+
+  .drag-n-drop {
+    display: inline;
+  }
+}
+
+
+.uploader-form.uploading .input-container,
+.uploader-form.success .input-container,
+.uploader-form.error .input-container {
+  @include display-transition-none(1s);
+}
+.uploader-form.uploading .uploading,
+.uploader-form.success .success,
+.uploader-form.error .error{
+  @include display-transition-block(1s);
+}
+
+
+/****ANIMATIONS****/
+.upload-modal {
+  .modal-enter {
+    opacity: 0.01;
+    justify-content: top;
+  }
+
+  .modal-enter.modal-enter-active {
+    opacity: 1;
+    justify-content: center;
+    transition: all 500ms linear;
+  }
+
+  .modal-leave {
+    opacity: 1;
+  }
+
+  .modal-leave.modal-leave-active .uploader{
+    opacity: 0.01;
+    transition: opacity 300ms linear;
+  }
+}

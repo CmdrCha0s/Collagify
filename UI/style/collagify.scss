@@ -1,0 +1,23 @@
+body {
+  background: #FFF;
+  width: 435px;
+  margin: auto;
+  border: 2px solid;
+}
+
+.collagify{
+  position:relative;
+}
+
+.collage-canvas {
+  background-size: contain !important;
+  position: relative;
+  overflow:hidden;
+  width:435px;
+  height: 773px;
+}
+
+@import 'menu';
+@import 'uploader';
+@import 'collage-image';
+@import 'buttons';

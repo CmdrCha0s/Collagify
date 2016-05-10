@@ -1,0 +1,9 @@
+@mixin display-transition-none($time){
+  display: none;
+  transition: display $time ease;
+}
+
+@mixin display-transition-block($time){
+  display:block;
+  transition: display $time ease;
+}
