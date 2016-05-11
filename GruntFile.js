@@ -44,5 +44,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat')
   grunt.loadNpmTasks("grunt-contrib-clean")
 
-  grunt.registerTask('default', ['babel', 'concat', 'uglify', 'clean'])
+  grunt.registerTask('build', ['babel', 'concat', 'uglify', 'clean'])
 }

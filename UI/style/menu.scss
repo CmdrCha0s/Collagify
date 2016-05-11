@@ -32,7 +32,7 @@
 }
 
 .submenus {
-  background: rgba(255, 255, 255, 0.84);
+  background: transparent;
   position: absolute;
   width: 100%;
   z-index: 100;
@@ -40,6 +40,7 @@
   overflow:hidden;
 }
 .submenu {
+  background: rgba(255, 255, 255, 0.84);
   overflow:hidden;
   text-align: right;
   padding: 5px;

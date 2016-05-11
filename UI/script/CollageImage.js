@@ -26,6 +26,28 @@ var Image = React.createClass({
             var w = enlarge ? this.state.width + this.state.width * scale : this.state.width - this.state.width * scale
             this.setState({posX: x, posY: y, height: h, width: w, mouseX: clientX, mouseY: clientY})
             break
+          case 'rotate-clockwise' :
+            var theta = this.state.theta;
+            if(((theta > 270 || theta <= 90) && delX > 0) || (theta <= 270 && theta > 90 && delX < 0)){
+                console.log('rotate')
+              theta += 1
+              if(theta < 0)
+                theta = 360 - theta;
+              theta = theta % 360
+            }
+            this.setState({theta: theta, mouseX: clientX, mouseY: clientY})
+            break
+          case 'rotate-anticlockwise' :
+            var theta = this.state.theta;
+            if(((theta > 270 || theta <= 90) && delX < 0) || (theta <= 270 && theta > 90 && delX > 0)){
+              theta -= 1
+              console.log(theta)
+              if(theta < 0)
+                theta = (360 + theta) % 360;
+              console.log(theta)
+            }
+            this.setState({theta: theta, mouseX: clientX, mouseY: clientY})
+            break
           default:
             break
       }
@@ -40,14 +62,11 @@ var Image = React.createClass({
     e.preventDefault()
     this.setState({mouseDown: false, action: undefined, mouseX: undefined, mouseY: undefined})
   },
-  rotate: function(direction){
-    var theta = this.state.theta;
-    if(direction === 'clockwise')
-      theta += 2
-    else {
-      theta -= 2
-    }
-    this.setState({theta: theta})
+  startRotateClockwise: function(){
+    this.setState({action: 'rotate-clockwise', mouseDown: true})
+  },
+  startRotateAntiClockwise: function(){
+    this.setState({action: 'rotate-anticlockwise', mouseDown: true})
   },
   startResize: function(){
     this.setState({action:'resize', mouseDown: true})
@@ -69,10 +88,10 @@ var Image = React.createClass({
       <div className="image-wrapper" id={this.props.id} onTouchMove={this.calculateMouseDelta} onMouseMove={this.calculateMouseDelta} onTouchEnd={this.mouseUp} onMouseUp={this.mouseUp}>
         <div className="collage-image" onTouchStart={this.mouseDown} onMouseDown={this.mouseDown} style={imageStyle}>
           <span className="rotate">
-            <span onTouchStart={this.rotate.bind(this, 'anti-clockwise')} onMouseDown={this.rotate.bind(this, 'anti-clockwise')}><i className="fa fa-undo" aria-hidden="true"></i></span>
-            <span onClick={this.rotate.bind(this, 'clockwise')} onMouseDown={this.rotate.bind(this, 'clockwise')}><i className="fa fa-repeat" aria-hidden="true"></i></span>
+            <span onTouchStart={this.startRotateAntiClockwise} onMouseDown={this.startRotateAntiClockwise}><i className="fa fa-undo" aria-hidden="true"></i></span>
+            <span onTouchStart={this.startRotateClockwise} onMouseDown={this.startRotateClockwise}><i className="fa fa-repeat" aria-hidden="true"></i></span>
           </span>
-          <span className="resize" onTouchStart={this.startResize} onMouseDown={this.startResize}><i className="fa fa-circle" aria-hidden="true"></i></span>
+          <span className="resize" onTouchStart={this.startResize} onMouseDown={this.startResize}><i className="fa fa-expand" aria-hidden="true"></i></span>
           <span className="move" onTouchStart={this.startMove} onMouseDown={this.startMove}></span>
           <span className="updating"><i className="fa fa-cog fa-spin fa-3x fa-fw margin-bottom"></i></span>
         </div>
