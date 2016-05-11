@@ -95,7 +95,7 @@ var Menu = React.createClass({
           <button className="menu-button background" onClick={this.openBackgrounds} />
         </div>
         <ReactCSSTransitionGroup component="div" className="submenus" transitionName="submenu" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
-          {submenus}
+          {submenu}
         </ReactCSSTransitionGroup>
       </div>
     )
