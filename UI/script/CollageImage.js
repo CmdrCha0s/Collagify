@@ -29,7 +29,6 @@ var Image = React.createClass({
           case 'rotate-clockwise' :
             var theta = this.state.theta;
             if(((theta > 270 || theta <= 90) && delX > 0) || (theta <= 270 && theta > 90 && delX < 0)){
-                console.log('rotate')
               theta += 1
               if(theta < 0)
                 theta = 360 - theta;
@@ -41,10 +40,8 @@ var Image = React.createClass({
             var theta = this.state.theta;
             if(((theta > 270 || theta <= 90) && delX < 0) || (theta <= 270 && theta > 90 && delX > 0)){
               theta -= 1
-              console.log(theta)
               if(theta < 0)
                 theta = (360 + theta) % 360;
-              console.log(theta)
             }
             this.setState({theta: theta, mouseX: clientX, mouseY: clientY})
             break
